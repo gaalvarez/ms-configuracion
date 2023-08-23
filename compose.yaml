@@ -1,0 +1,17 @@
+services:
+  rabbitmq:
+    image: 'rabbitmq:3.10.25-management'
+    environment:
+      - 'RABBITMQ_DEFAULT_PASS=secret'
+      - 'RABBITMQ_DEFAULT_USER=root'
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+  audamedic-configuracion:
+    image: oracle/database:18.4.0-xe
+    ports:
+      - "11521:1521"
+    environment:
+      - ORACLE_PWD=audamedic2023
+      - ORACLE_CHARACTERSET=AL32UTF8
+    restart: always
