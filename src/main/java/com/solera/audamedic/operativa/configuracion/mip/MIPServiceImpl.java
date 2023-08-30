@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 @Slf4j
@@ -35,7 +36,8 @@ public class MIPServiceImpl implements MIPService {
      */
     private void sendConfigurationUpdatedEvent() {
         try {
-            configuracionUpdatedPub.sendConfigurationUpdatedEvent(Arrays.asList(MIP.class.getSimpleName()), false);
+            // configuracionUpdatedPub.sendConfigurationUpdatedEvent(Arrays.asList(MIP.class.getSimpleName()), false);
+            configuracionUpdatedPub.sendConfigurationUpdatedEvent(new ArrayList<>(), true);
         } catch (SendEventException ex) {
             log.warn(ex.getMessage(), ex);
         }

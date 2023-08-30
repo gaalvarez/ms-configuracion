@@ -15,15 +15,16 @@ import java.util.List;
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/api/portafolios")
-public class PortafolioController {
+@RequestMapping("/api/proveedores")
+public class ProveedorController {
 
     private final PortafolioService portafolioService;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Portafolio> getPortafolioById(@PathVariable Long id) {
-        Portafolio portafolio = portafolioService.findByPortafolioID(id);
-        return new ResponseEntity<>(portafolio, HttpStatus.OK);
+    @GetMapping("/{id}/portafolios")
+    public ResponseEntity<List<Portafolio>> getPortafoliosByProveedorId(@PathVariable Long id) {
+        log.info("Requesting portafolio by provider id " + id);
+        List<Portafolio> portafolios = portafolioService.findListByProveedorId(id);
+        return new ResponseEntity<>(portafolios, HttpStatus.OK);
     }
 
 }
